@@ -217,10 +217,15 @@ input:checked + .toggle-slider:before {
 }
 
 
-.no-plugins h3 {
-  margin: 0 0 8px 0;
-  font-size: 1.25rem;
-  color: var(--text-primary);
+.no-plugins {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+  border-radius: 8px;
 }
 
 .no-plugins p {

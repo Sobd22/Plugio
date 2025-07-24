@@ -21,7 +21,6 @@ const MainScreen: React.FC = () => {
 
     loadPlugins();
 
-    const registry = PluginLoader.getInstance().registry || PluginRegistry.getInstance();
     const handleTabRemoved = (data: any) => {
       const { tabId } = data;
       if (activeTab === tabId) {

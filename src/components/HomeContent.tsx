@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PluginRegistry } from '../core/plugin-system/registry';
+import { getIconPath } from '../utils/paths';
 import '../styles/HomeContent.css';
 
 const HomeContent: React.FC = () => {
@@ -36,7 +37,7 @@ const HomeContent: React.FC = () => {
       <div className="hero-section">
         <div className="hero-logo">
           <div className="logo-container">
-            <img src="/icons/logo.svg" alt="Plugio" className="logo-icon" />
+            <img src={getIconPath('logo.svg')} alt="Plugio" className="logo-icon" />
             <div className="logo-text">
               <span className="logo-plug">Plug</span>
               <span className="logo-io">io</span>

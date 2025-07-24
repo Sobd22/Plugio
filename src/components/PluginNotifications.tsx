@@ -11,7 +11,7 @@ interface Notification {
 
 const PluginNotifications: React.FC = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [, setNotificationsEnabled] = useState(true);
   const registry = PluginRegistry.getInstance();
 
   useEffect(() => {

@@ -1,10 +1,18 @@
 const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV === 'development' || process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) || /[\\/]electron[\\/]/.test(process.execPath);
+
+const getResourcePath = () => {
+  if (isDev) {
+    return path.join(__dirname, '..');
+  } else {
+    return path.join(__dirname, '..', '..');
+  }
+};
+
 
 let mainWindow;
-let loadingWindow;
 
 function ensurePluginsDirectory() {
   try {
@@ -18,41 +26,6 @@ function ensurePluginsDirectory() {
   } catch (error) {
     console.error('Failed to create plugins directory:', error);
   }
-}
-
-function createLoadingWindow() {
-  loadingWindow = new BrowserWindow({
-    width: 1170,
-    height: 617,
-    frame: false,
-    resizable: false,
-    webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
-      preload: path.join(__dirname, 'preload.cjs')
-    },
-    backgroundColor: '#16181E',
-    show: false
-  });
-
-  if (isDev) {
-    loadingWindow.loadURL('http://localhost:5173/#/loading');
-  } else {
-    loadingWindow.loadFile(path.join(__dirname, '../dist/index.html'), { hash: 'loading' });
-  }
-
-  loadingWindow.once('ready-to-show', () => {
-    loadingWindow.show();
-    
-    setTimeout(() => {
-      createMainWindow();
-      loadingWindow.close();
-    }, 3000);
-  });
-
-  loadingWindow.on('closed', () => {
-    loadingWindow = null;
-  });
 }
 
 function createMainWindow() {
@@ -74,7 +47,8 @@ function createMainWindow() {
     mainWindow.loadURL('http://localhost:5173');
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
+    const htmlPath = path.join(__dirname, '..', 'dist', 'index.html');
+    mainWindow.loadFile(htmlPath);
   }
 
   mainWindow.once('ready-to-show', () => {
@@ -121,11 +95,11 @@ ipcMain.handle('open-external', async (event, url) => {
 app.whenReady().then(() => {
   ensurePluginsDirectory();
   
-  createLoadingWindow();
+  createMainWindow();
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createLoadingWindow();
+      createMainWindow();
     }
   });
 });

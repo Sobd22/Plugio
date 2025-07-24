@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PluginRegistry } from '../core/plugin-system/registry';
 import type { TabDefinition } from '../core/plugin-system/types';
 import { TabIcon } from './TabIcon';
+import { getIconPath } from '../utils/paths';
 import '../styles/Sidebar.css';
 
 interface SidebarProps {
@@ -44,17 +45,17 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
     {
       id: 'home',
       title: 'Главная',
-      icon: { type: 'url' as const, content: '/icons/home.svg', size: 16 }
+      icon: { type: 'url' as const, content: getIconPath('home.svg'), size: 16 }
     },
     {
       id: 'plugins',
       title: 'Плагины',
-      icon: { type: 'url' as const, content: '/icons/exstn.svg', size: 16 }
+      icon: { type: 'url' as const, content: getIconPath('exstn.svg'), size: 16 }
     },
     {
       id: 'settings',
       title: 'Настройки',
-      icon: { type: 'url' as const, content: '/icons/settings.svg', size: 16 }
+      icon: { type: 'url' as const, content: getIconPath('settings.svg'), size: 16 }
     }
   ];
 

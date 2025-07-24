@@ -38,5 +38,31 @@
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4",
     "wait-on": "^8.0.4"
+  },
+  "build": {
+    "appId": "com.plugio.app",
+    "productName": "Plugio",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "public/icons",
+        "to": "icons"
+      }
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }

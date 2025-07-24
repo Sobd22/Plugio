@@ -1,4 +1,5 @@
 import React from 'react';
+import { getIconPath } from '../utils/paths';
 import '../styles/TitleBar.css';
 
 const TitleBar: React.FC = () => {
@@ -33,13 +34,13 @@ const TitleBar: React.FC = () => {
           <div className="window-controls">
             
             <button className="control-button minimize" onClick={handleMinimize}>
-              <img src="/icons/hide.svg" alt="Plugio" className="control-button minimize" />
+              <img src={getIconPath('hide.svg')} alt="Minimize" className="control-button minimize" />
             </button>
             <button className="control-button maximize" onClick={handleMaximize}>
-              <img src="/icons/minimaze.svg" alt="Plugio" className="control-button minimize" />
+              <img src={getIconPath('minimaze.svg')} alt="Maximize" className="control-button minimize" />
             </button>
             <button className="control-button close" onClick={handleClose}>
-              <img src="/icons/close.svg" alt="Plugio" className="control-button close" />
+              <img src={getIconPath('close.svg')} alt="Close" className="control-button close" />
             </button>
           </div>
         </div>
