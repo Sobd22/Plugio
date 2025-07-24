@@ -13,4 +13,6 @@
   flex: 1;
   display: flex;
   background-color: var(--bg-primary);
+  min-height: 0;
+  overflow: hidden;
 }

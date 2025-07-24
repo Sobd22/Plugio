@@ -5,7 +5,7 @@ interface AppState {
   isLoading: boolean;
   currentScreen: 'loading' | 'main';
   theme: 'dark';
-  activeTab: 'home' | 'settings';
+  activeTab: string; // Изменили на string для поддержки плагинов
 }
 
 const initialState: AppState = {
@@ -25,7 +25,7 @@ const appSlice = createSlice({
     setCurrentScreen: (state, action: PayloadAction<'loading' | 'main'>) => {
       state.currentScreen = action.payload;
     },
-    setActiveTab: (state, action: PayloadAction<'home' | 'settings'>) => {
+    setActiveTab: (state, action: PayloadAction<string>) => {
       state.activeTab = action.payload;
     },
   },

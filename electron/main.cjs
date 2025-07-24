@@ -1,9 +1,24 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const path = require('path');
+const fs = require('fs');
 const isDev = process.env.NODE_ENV !== 'production';
 
 let mainWindow;
 let loadingWindow;
+
+function ensurePluginsDirectory() {
+  try {
+    const userDataPath = app.getPath('userData');
+    const pluginsPath = path.join(userDataPath, 'plugins');
+    
+    if (!fs.existsSync(pluginsPath)) {
+      fs.mkdirSync(pluginsPath, { recursive: true });
+      console.log(`Created plugins directory: ${pluginsPath}`);
+    }
+  } catch (error) {
+    console.error('Failed to create plugins directory:', error);
+  }
+}
 
 function createLoadingWindow() {
   loadingWindow = new BrowserWindow({
@@ -20,7 +35,6 @@ function createLoadingWindow() {
     show: false
   });
 
-  // Загрузка страницы загрузки
   if (isDev) {
     loadingWindow.loadURL('http://localhost:5173/#/loading');
   } else {
@@ -30,7 +44,6 @@ function createLoadingWindow() {
   loadingWindow.once('ready-to-show', () => {
     loadingWindow.show();
     
-    // Симуляция загрузки компонентов
     setTimeout(() => {
       createMainWindow();
       loadingWindow.close();
@@ -57,7 +70,6 @@ function createMainWindow() {
     show: false
   });
 
-  // Загрузка главной страницы
   if (isDev) {
     mainWindow.loadURL('http://localhost:5173');
     mainWindow.webContents.openDevTools();
@@ -74,7 +86,6 @@ function createMainWindow() {
   });
 }
 
-// Обработчики IPC для управления окном
 ipcMain.on('minimize-window', () => {
   if (mainWindow) {
     mainWindow.minimize();
@@ -97,7 +108,19 @@ ipcMain.on('close-window', () => {
   }
 });
 
+ipcMain.handle('open-external', async (event, url) => {
+  try {
+    await shell.openExternal(url);
+    return { success: true };
+  } catch (error) {
+    console.error('Failed to open external URL:', error);
+    return { success: false, error: error.message };
+  }
+});
+
 app.whenReady().then(() => {
+  ensurePluginsDirectory();
+  
   createLoadingWindow();
 
   app.on('activate', () => {

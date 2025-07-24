@@ -1,4 +1,3 @@
-/* Основные переменные */
 :root {
   --bg-primary: #16181e;
   --bg-secondary: #1e2027;
@@ -14,7 +13,6 @@
   --font-family-primary: 'Nunito', sans-serif;
 }
 
-/* Глобальные стили reset */
 * {
   margin: 0;
   padding: 0;
@@ -36,9 +34,10 @@ html, body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Общие стили для кнопок */
 button {
   border: none;
   background: none;
@@ -55,7 +54,6 @@ button:active {
   transform: scale(0.95);
 }
 
-/* Стили для скроллбара */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -73,7 +71,6 @@ button:active {
   background: var(--stroke-primary);
 }
 
-/* Отключение выделения текста для UI элементов */
 .title-bar,
 .sidebar,
 .window-controls {
@@ -81,4 +78,21 @@ button:active {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.main-screen,
+.main-content,
+.content-area,
+.content-container,
+.content-frame,
+.content-inner {
+  min-height: 0;
+}
+
+.content-inner {
+  position: relative;
+}
+
+.content-inner > * {
+  flex-shrink: 0;
 }

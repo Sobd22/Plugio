@@ -1,16 +1,26 @@
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer, shell } = require('electron');
 
-// Экспорт API для renderer процесса
 contextBridge.exposeInMainWorld('electronAPI', {
-  // Управление окном
   minimizeWindow: () => ipcRenderer.send('minimize-window'),
   maximizeWindow: () => ipcRenderer.send('maximize-window'),
   closeWindow: () => ipcRenderer.send('close-window'),
   
-  // Другие API можно добавить здесь
+  openExternal: (url) => {
+    return ipcRenderer.invoke('open-external', url);
+  },
+  
+  getPluginsPath: () => {
+    const userDataPath = process.env.APPDATA || 
+      (process.platform === 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME + '/.local/share');
+    return userDataPath + '/plugio/plugins';
+  },
+  getUserDataPath: () => {
+    const userDataPath = process.env.APPDATA || 
+      (process.platform === 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME + '/.local/share');
+    return userDataPath + '/plugio';
+  }
 });
 
-// Экспорт дополнительных утилит
 contextBridge.exposeInMainWorld('platform', {
   isWindows: process.platform === 'win32',
   isMac: process.platform === 'darwin',
