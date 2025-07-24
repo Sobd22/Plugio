@@ -5,14 +5,14 @@ interface AppState {
   isLoading: boolean;
   currentScreen: 'loading' | 'main';
   theme: 'dark';
-  activeTab: 'store' | 'plugins';
+  activeTab: 'home' | 'settings';
 }
 
 const initialState: AppState = {
   isLoading: true,
   currentScreen: 'loading',
   theme: 'dark',
-  activeTab: 'store',
+  activeTab: 'home',
 };
 
 const appSlice = createSlice({
@@ -25,7 +25,7 @@ const appSlice = createSlice({
     setCurrentScreen: (state, action: PayloadAction<'loading' | 'main'>) => {
       state.currentScreen = action.payload;
     },
-    setActiveTab: (state, action: PayloadAction<'store' | 'plugins'>) => {
+    setActiveTab: (state, action: PayloadAction<'home' | 'settings'>) => {
       state.activeTab = action.payload;
     },
   },

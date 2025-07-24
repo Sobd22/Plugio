@@ -2,26 +2,37 @@ import React from 'react';
 import '../styles/ContentArea.css';
 
 interface ContentAreaProps {
-  activeTab: 'store' | 'plugins';
+  activeTab: 'home' | 'settings';
 }
 
 const ContentArea: React.FC<ContentAreaProps> = ({ activeTab }) => {
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'home':
+        return (
+          <div className="home-content">
+            <h2>Главная</h2>
+            <p>Добро пожаловать в Plugio! Здесь вы можете управлять своими плагинами.</p>
+          </div>
+        );
+      case 'settings':
+        return (
+          <div className="settings-content">
+            <h2>Настройки</h2>
+            <p>Здесь вы можете настроить параметры приложения.</p>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="content-area">
       <div className="content-container">
         <div className="content-frame">
           <div className="content-inner">
-            {activeTab === 'store' ? (
-              <div className="store-content">
-                <h2>Магазин плагинов</h2>
-                <p>Здесь будет отображаться список доступных плагинов для установки.</p>
-              </div>
-            ) : (
-              <div className="plugins-content">
-                <h2>Установленные плагины</h2>
-                <p>Здесь будет отображаться список установленных плагинов.</p>
-              </div>
-            )}
+            {renderContent()}
           </div>
         </div>
       </div>

@@ -2,8 +2,8 @@ import React from 'react';
 import '../styles/Sidebar.css';
 
 interface SidebarProps {
-  activeTab: 'store' | 'plugins';
-  onTabChange: (tab: 'store' | 'plugins') => void;
+  activeTab: 'home' | 'settings';
+  onTabChange: (tab: 'home' | 'settings') => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
@@ -11,19 +11,19 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
     <div className="sidebar">
       <div className="sidebar-tabs">
         <button
-          className={`tab-button ${activeTab === 'store' ? 'active' : ''}`}
-          onClick={() => onTabChange('store')}
+          className={`tab-button ${activeTab === 'home' ? 'active' : ''}`}
+          onClick={() => onTabChange('home')}
         >
-          <div className="tab-icon store-icon">
-            <img src="/icons/store.svg" alt="Store" />
+          <div className="tab-icon home-icon">
+            <img src="/icons/home.svg" alt="Home" />
           </div>
         </button>
         <button
-          className={`tab-button ${activeTab === 'plugins' ? 'active' : ''}`}
-          onClick={() => onTabChange('plugins')}
+          className={`tab-button ${activeTab === 'settings' ? 'active' : ''}`}
+          onClick={() => onTabChange('settings')}
         >
-          <div className="tab-icon plugins-icon">
-            <img src="/icons/plugins.svg" alt="Plugins" />
+          <div className="tab-icon settings-icon">
+            <img src="/icons/settings.svg" alt="Settings" />
           </div>
         </button>
       </div>

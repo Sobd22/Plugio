@@ -39,13 +39,17 @@
   padding: 40px;
 }
 
+.home-content,
 .store-content,
-.plugins-content {
+.plugins-content,
+.settings-content {
   text-align: center;
 }
 
+.home-content h2,
 .store-content h2,
-.plugins-content h2 {
+.plugins-content h2,
+.settings-content h2 {
   font-family: var(--font-family-primary);
   font-weight: 600;
   font-size: 24px;
@@ -53,8 +57,10 @@
   margin-bottom: 16px;
 }
 
+.home-content p,
 .store-content p,
-.plugins-content p {
+.plugins-content p,
+.settings-content p {
   font-family: var(--font-family-primary);
   font-weight: 400;
   font-size: 16px;

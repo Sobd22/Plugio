@@ -11,7 +11,7 @@ const MainScreen: React.FC = () => {
   const dispatch = useDispatch();
   const { activeTab } = useSelector((state: RootState) => state.app);
 
-  const handleTabChange = (tab: 'store' | 'plugins') => {
+  const handleTabChange = (tab: 'home' | 'settings') => {
     dispatch(setActiveTab(tab));
   };
 
