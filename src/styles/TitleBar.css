@@ -1,0 +1,93 @@
+.title-bar {
+  width: 100%;
+  height: 52px;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--bg-primary);
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+  padding: 0 20px;
+  -webkit-app-region: drag;
+}
+
+.title-bar-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.title-bar-left {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 19.6px;
+  letter-spacing: 0;
+}
+
+.title-plug {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800; /* Black */
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.title-io {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600; /* SemiBold */
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.title-bar-right {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+.window-controls {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  -webkit-app-region: no-drag;
+}
+
+.control-button {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: var(--text-secondary);
+}
+
+.control-button:hover {
+  background-color: rgba(62, 69, 69, 0.3);
+}
+
+.control-button.close:hover {
+  background-color: rgba(62, 69, 69, 0.3);
+}
+
+.control-button svg {
+  width: 20px;
+  height: 20px;
+}
