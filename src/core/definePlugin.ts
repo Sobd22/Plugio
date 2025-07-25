@@ -1,23 +1,6 @@
 import type { PluginDefinition } from './plugin-system/types';
 
-/**
- * 
- * 
- * 
- * @example
- * ```typescript
- * export default definePlugin({
- *   name: "MyCoolPlugin",
- *   description: "I am very cute!",
- *   authors: [Devs.Plugio],
- *   tabs: [{
- *     id: "my-tab",
- *     title: "My Tab",
- *     component: MyComponent
- *   }]
- * });
- * ```
- */
+
 export function definePlugin(definition: PluginDefinition): PluginDefinition {
   if (!definition.name || typeof definition.name !== 'string') {
     throw new Error('Plugin must have a valid name');

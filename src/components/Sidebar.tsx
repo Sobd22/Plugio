@@ -17,18 +17,15 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
   useEffect(() => {
     const updateTabs = () => {
       const tabs = registry.getAllTabs();
-      console.log('🔍 Sidebar: Updating tabs, found:', tabs.length, tabs);
       setPluginTabs(tabs);
     };
 
     updateTabs();
 
-    const handleTabAdded = (data: any) => {
-      console.log('➕ Sidebar: Tab added event received:', data);
+    const handleTabAdded = (_data: any) => {
       updateTabs();
     };
-    const handleTabRemoved = (data: any) => {
-      console.log('➖ Sidebar: Tab removed event received:', data);
+    const handleTabRemoved = (_data: any) => {
       updateTabs();
     };
 

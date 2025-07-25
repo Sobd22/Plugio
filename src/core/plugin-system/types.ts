@@ -1,6 +1,5 @@
 import type React from 'react';
 
-// Base interfaces
 export interface Author {
   name: string;
   id?: bigint;
@@ -31,7 +30,6 @@ export interface SettingItem {
   options?: Array<{ label: string; value: any }>;
 }
 
-// Plugin API interface
 export interface PluginAPI {
   addTab: (tab: TabDefinition) => void;
   removeTab: (tabId: string) => void;
@@ -46,7 +44,6 @@ export interface PluginAPI {
   getAssetPath: (filename: string) => string;
 }
 
-// Main plugin definition
 export interface PluginDefinition {
   name: string;
   description: string;
@@ -66,7 +63,6 @@ export interface PluginContext {
   plugin: PluginDefinition;
 }
 
-// Developer constants
 export const Devs = {
   Plugio: { name: "Plugio Team", id: 1n },
   Community: { name: "Community", id: 2n },

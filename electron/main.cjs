@@ -21,7 +21,7 @@ function ensurePluginsDirectory() {
     
     if (!fs.existsSync(pluginsPath)) {
       fs.mkdirSync(pluginsPath, { recursive: true });
-      console.log(`Created plugins directory: ${pluginsPath}`);
+      
     }
   } catch (error) {
     console.error('Failed to create plugins directory:', error);
@@ -89,6 +89,43 @@ ipcMain.handle('open-external', async (event, url) => {
   } catch (error) {
     console.error('Failed to open external URL:', error);
     return { success: false, error: error.message };
+  }
+});
+
+ipcMain.handle('read-plugin-file', async (event, filePath) => {
+  try {
+    const pluginsPath = path.join(app.getPath('userData'), 'plugins');
+    const normalizedPath = path.normalize(filePath);
+    
+    if (!normalizedPath.startsWith(pluginsPath)) {
+      throw new Error('Access denied: file is outside plugins directory');
+    }
+    
+    const content = await fs.promises.readFile(normalizedPath, 'utf-8');
+    return content;
+  } catch (error) {
+    console.error('Failed to read plugin file:', error);
+    return null;
+  }
+});
+
+ipcMain.handle('scan-plugins-directory', async () => {
+  try {
+    const pluginsPath = path.join(app.getPath('userData'), 'plugins');
+    
+    if (!fs.existsSync(pluginsPath)) {
+      return [];
+    }
+    
+    const files = await fs.promises.readdir(pluginsPath, { recursive: true });
+    const pluginFiles = files.filter(file => 
+      file.endsWith('.tsx') || file.endsWith('.ts') || file.endsWith('.jsx') || file.endsWith('.js')
+    ).map(file => path.join(pluginsPath, file));
+    
+    return pluginFiles;
+  } catch (error) {
+    console.error('Failed to scan plugins directory:', error);
+    return [];
   }
 });
 

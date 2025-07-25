@@ -24,7 +24,6 @@ const MainScreen: React.FC = () => {
     const handleTabRemoved = (data: any) => {
       const { tabId } = data;
       if (activeTab === tabId) {
-        console.log(`\ud83d\udd04 Switching to home tab because ${tabId} was removed`);
         dispatch(setActiveTab('home'));
       }
     };

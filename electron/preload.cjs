@@ -18,6 +18,13 @@ contextBridge.exposeInMainWorld('electronAPI', {
     const userDataPath = process.env.APPDATA || 
       (process.platform === 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME + '/.local/share');
     return userDataPath + '/plugio';
+  },
+  
+  readPluginFile: (filePath) => {
+    return ipcRenderer.invoke('read-plugin-file', filePath);
+  },
+  scanPluginsDirectory: () => {
+    return ipcRenderer.invoke('scan-plugins-directory');
   }
 });
 

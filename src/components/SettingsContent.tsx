@@ -29,15 +29,11 @@ const SettingsContent: React.FC = () => {
 
   const handleAutoLaunchChange = (value: boolean) => {
     setAutoLaunch(value);
-    localStorage.setItem('settings:autoLaunch', JSON.stringify(value));
-    console.log('Автозапуск приложения:', value ? 'включен' : 'выключен');
-  };
+    localStorage.setItem('settings:autoLaunch', JSON.stringify(value));};
 
   const handleApiNotificationsChange = (value: boolean) => {
     setApiNotifications(value);
     localStorage.setItem('settings:apiNotifications', JSON.stringify(value));
-    console.log('Уведомления API:', value ? 'включены' : 'выключены');
-    
     window.dispatchEvent(new CustomEvent('settings:apiNotifications:changed', {
       detail: { enabled: value }
     }));

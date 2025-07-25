@@ -3,9 +3,11 @@ export interface ElectronAPI {
   maximizeWindow: () => void;
   closeWindow: () => void;
   
-  // Поддержка плагинов
   getPluginsPath: () => string;
   getUserDataPath: () => string;
+  readPluginFile: (filePath: string) => Promise<string | null>;
+  scanPluginsDirectory: () => Promise<string[]>;
+  openExternal: (url: string) => Promise<{ success: boolean; error?: string }>;
 }
 
 export interface Platform {

@@ -85,7 +85,6 @@ export class PluginRegistry {
     
     this.tabs.set(tab.id, enhancedTab);
     
-    console.log(`📤 Registry: Emitting tab:added event for tab ${enhancedTab.id}`);
     this.emit('tab:added', { tab: enhancedTab, plugin });
   }
   
@@ -94,7 +93,6 @@ export class PluginRegistry {
     const tab = this.tabs.get(tabId);
     if (tab) {
       this.tabs.delete(tabId);
-      console.log(`📤 Registry: Emitting tab:removed event for tab ${tabId}`);
       this.emit('tab:removed', { tabId, tab });
     }
   }

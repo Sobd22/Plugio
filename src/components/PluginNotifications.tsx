@@ -25,7 +25,6 @@ const PluginNotifications: React.FC = () => {
       const isEnabled = currentSetting ? JSON.parse(currentSetting) : true;
       
       if (!isEnabled) {
-        console.log('Уведомление от плагина заблокировано настройками:', notification.message);
         return;
       }
 

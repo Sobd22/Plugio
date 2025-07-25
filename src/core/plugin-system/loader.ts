@@ -1,6 +1,7 @@
 import type { PluginDefinition } from './types';
 import { PluginRegistry } from './registry';
 import { PluginAPIImpl } from './api';
+import { DynamicPluginLoader } from './dynamic-loader';
 
 export class PluginLoader {
   private static _instance: PluginLoader;
@@ -8,6 +9,7 @@ export class PluginLoader {
   private loadedPlugins = new Map<string, PluginDefinition>();
   private allAvailablePlugins = new Map<string, PluginDefinition>();
   private loadingPromise: Promise<void> | null = null;
+  private dynamicLoader = DynamicPluginLoader;
   
   static getInstance(): PluginLoader {
     if (!this._instance) {
@@ -23,12 +25,10 @@ export class PluginLoader {
 
   async loadAllPlugins(): Promise<void> {
     if (this.loadingPromise) {
-      console.log('⏳ Plugin loading already in progress, waiting...');
       return this.loadingPromise;
     }
     
     if (this.loadedPlugins.size > 0) {
-      console.log('✅ Plugins already loaded, skipping...');
       return;
     }
     
@@ -44,14 +44,14 @@ export class PluginLoader {
 
   private async doLoadAllPlugins(): Promise<void> {
     try {
-      console.log('🔌 Starting plugin loading...');
+      
       
       const pluginModules = import.meta.glob('/src/plugins/*/index.tsx', { eager: false });
       
-      const loadPromises = Object.entries(pluginModules).map(async ([path, moduleLoader]) => {
+      const builtinPromises = Object.entries(pluginModules).map(async ([path, moduleLoader]) => {
         try {
           const pluginName = this.extractPluginNameFromPath(path);
-          console.log(`📦 Loading plugin: ${pluginName}`);
+          
           
           const module = await moduleLoader() as { default: PluginDefinition };
           const plugin = module.default;
@@ -67,19 +67,18 @@ export class PluginLoader {
           
           await this.loadPlugin(plugin);
           
-          console.log(`✅ Plugin loaded: ${plugin.name} (${pluginName})`);
+          
         } catch (error) {
-          console.error(`❌ Failed to load plugin from ${path}:`, error);
+          console.error(`Failed to load plugin from ${path}:`, error);
         }
       });
       
-      await Promise.all(loadPromises);
+      const externalPromise = this.loadExternalPlugins();
       
-      const stats = this.registry.getStats();
-      console.log(`🎉 Plugin loading complete! Loaded ${stats.totalPlugins} plugins with ${stats.totalTabs} tabs`);
+      await Promise.all([...builtinPromises, externalPromise]);
       
     } catch (error) {
-      console.error('💥 Failed to load plugins:', error);
+      console.error('Failed to load plugins:', error);
     }
   }
   
@@ -154,7 +153,7 @@ export class PluginLoader {
       
       this.registry.emit('plugin:unloaded', { pluginName });
       
-      console.log(`🗑️ Plugin "${pluginName}" unloaded successfully`);
+      
       return true;
       
     } catch (error) {
@@ -264,5 +263,31 @@ export class PluginLoader {
       loadedPlugins: this.loadedPlugins.size,
       registryStats: this.registry.getStats()
     };
+  }
+
+  private async loadExternalPlugins(): Promise<void> {
+    try {
+      
+      
+      const pluginFiles = await this.dynamicLoader.scanPluginsDirectory();
+      
+      
+      for (const pluginFile of pluginFiles) {
+        try {
+          
+          const plugin = await this.dynamicLoader.loadPluginFromFile(pluginFile);
+          
+          if (plugin) {
+            this.allAvailablePlugins.set(plugin.name, plugin);
+            await this.loadPlugin(plugin);
+            
+          }
+        } catch (error) {
+          console.error(`Failed to load external plugin from ${pluginFile}:`, error);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load external plugins:', error);
+    }
   }
 }
