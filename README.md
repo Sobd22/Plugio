@@ -44,6 +44,12 @@
 
 PlugIO — ознакомительный проект десктопного приложения на базе Electron + Vite, демонстрирующий реализацию поддержки плагинов в desktop-приложениях. Проект поддерживает как системные, так и пользовательские плагины, обеспечивая гибкость и расширяемость архитектуры.
 
+<div align="center" style="margin: 16px 0;">
+  <img src="public/screen/home.png" alt="Главная страница" width="100%">
+  &nbsp; &nbsp;
+  <img src="public/screen/ext.png" alt="Расширения" width="100%">
+</div>
+
 ---
 
 ## Ключевые возможности
@@ -62,7 +68,6 @@ PlugIO — ознакомительный проект десктопного п
 -  [Онлайн-документация](https://plugio-docs.vercel.app/)
 - [Исходный код документации на GitHub](https://github.com/Sobd22/plugio-docs)
 
-
 ---
 
 ## Статус проекта
@@ -77,8 +82,8 @@ PlugIO — ознакомительный проект десктопного п
   Создано <a href="https://t.me/devii_dev">Devil</a> (@devii_dev)
 </div>
 
----
 
+---
 
 <div align="center">
 <a href="https://t.me/devii_dev">

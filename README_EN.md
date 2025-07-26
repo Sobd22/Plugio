@@ -44,6 +44,12 @@
 
 PlugIO is an introductory desktop application project built on Electron + Vite, demonstrating a plugin-based architecture for desktop environments. The project supports both system and user plugins, providing flexibility and extensibility in application design.
 
+<div align="center" style="margin: 16px 0;">
+  <img src="public/screen/home.png" alt="Главная страница" width="100%">
+  &nbsp; &nbsp;
+  <img src="public/screen/ext.png" alt="Расширения" width="100%">
+</div>
+
 ---
 
 ## Key Features
