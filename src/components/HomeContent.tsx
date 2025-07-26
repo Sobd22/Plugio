@@ -81,7 +81,7 @@ const HomeContent: React.FC = () => {
         <div className="links-grid">
           <button 
             className="link-card github"
-            onClick={() => openLink('https://github.com/your-username/plugio')}
+            onClick={() => openLink('https://github.com/Sobd22/plugio')}
           >
             <div className="link-icon">
               <svg viewBox="0 0 24 24" fill="currentColor">
@@ -117,7 +117,7 @@ const HomeContent: React.FC = () => {
 
           <button 
             className="link-card telegram"
-            onClick={() => openLink('https://t.me/plugio_dev')}
+            onClick={() => openLink('https://t.me/devii_dev')}
           >
             <div className="link-icon">
               <svg viewBox="0 0 24 24" fill="currentColor">
@@ -133,7 +133,7 @@ const HomeContent: React.FC = () => {
 
           <button 
             className="link-card discord"
-            onClick={() => openLink('https://discord.gg/plugio')}
+            onClick={() => openLink('https://t.me/devii_dev')}
           >
             <div className="link-icon">
               <svg viewBox="0 0 24 24" fill="currentColor">
