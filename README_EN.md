@@ -57,8 +57,10 @@ PlugIO is an introductory desktop application project built on Electron + Vite, 
 
 ## Documentation
 
-Complete documentation covering architecture, API, and integration methods is available in a dedicated repository:  
-[Plugio-docs](https://github.com/Sobd22/Plugio-docs)
+Complete documentation covering architecture, API, and integration methods is available in a dedicated repository and on the official website:
+
+- [Online Documentation](https://plugio-docs.vercel.app/)  
+- [Documentation Source on GitHub](https://github.com/Sobd22/plugio-docs)
 
 ---
 
