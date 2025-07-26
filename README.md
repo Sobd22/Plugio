@@ -75,16 +75,14 @@ PlugIO — ознакомительный проект десктопного п
 Официальная поддержка проекта прекращена 26 июля 2025 года в связи с утратой перспектив развития.  
 Проект завершён.
 
-<div align="center">
-  <img src="https://cdn4.cdn-telegram.org/file/Vx0tBjQgMYKIpdqbn-JcOYZU2r1slnf_d4HoAPkGh-Tcy8Em691Dq8kUwbiO179aGwHh46vaQzk4NZjk_mpeUbnl-NGYbMB9OC4Steei0XmTrB-0antL3ndVuI6mlsR-Bl0I6bs9tAcsJ0t-x3JpiqjYB3Y3yrB5y1iskMzExg3BdmiATe8QnITYVlLE9V0Q2pQzTKcFwWtpdP1G2cytyA_ep7dJqNx37MqRSsW9F-bv1Q9MQW4jOEFROKe_7kiV6fUGf0tlem_UZWV8S-mqehshsr7T_RCp6olVAVJ6tej82mSx4NciOCKPkL2NcnwPUjqzGI0ygAROmIa5bC3vKw.jpg" width="120" alt="Devil — создатель PlugIO">
-  <br><br>
-  <strong>Светлая память проекту.</strong><br>
-  Создано <a href="https://t.me/devii_dev">Devil</a> (@devii_dev)
-</div>
+<strong>Светлая память проекту🕯️.</strong><br>
+
 
 
 ---
-
+<div align="center">
+<img src="public/devii_dev.png" alt="Devil" width="100" >
+</div>
 <div align="center">
 <a href="https://t.me/devii_dev">
 Связаться через Telegram </a>
